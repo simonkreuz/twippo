@@ -22,8 +22,9 @@ def track_updated(request):
         log.warning("Track updated webhook: couldn't decode JSON", extra={
             "webhook_body": request.body })  
         return HttpResponse("", status=400)
+    recipient_number_query = request.GET.get("recipient_phone")
     sender_number    = get_sender_number()
-    recipient_number = get_recipient_number()
+    recipient_number = recipient_number_query or get_recipient_number()
     body             = get_body(decoded_body)
     log.info("Found sender '%s', recipient '%s', body '%s'." % \
         (sender_number, recipient_number, body))
