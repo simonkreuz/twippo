@@ -1,0 +1,3 @@
+db.sqlite3
+*.pyc
+twippo/settings_local.py
